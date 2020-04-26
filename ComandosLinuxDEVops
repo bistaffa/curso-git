@@ -1,0 +1,334 @@
+===============================
+----CURSO DE FORMACAO DEVOPS----
+===============================
+Comandos do LINUX
+-------------------------------
+
+1-Comando para listar em qual diretorio está logado. Serve para descobrir o diretório atual.
+#pwd
+#/home/bistaffa
+
+2-Comando para listar o conteúdo do diretorio. Serve para listar arquivos e diretórios, vimos as opções -l e -la, que listam além dos arquivos e diretórios ocultos, informações extras sobre cada um deles.
+#ls
+
+3-Comando para imprimir uma mensagem no terminal. Echo para imprimir mensagens e o operador > para modificar o destino da mensagem.
+#echo Bem vindo
+#Bem vindo
+
+4-Caracter > corresponde a colocar um texto dentro de um arquivo.
+#echo "Bem vindo" > bemvindo.texto
+
+5-Comando para ler o conteudo de um arquivo
+#cat bemvindo.txt 
+
+6-Comando man + comando sobre qual eu quero aprender. Man para consultar o manual sobre determinado comando.
+#man ls
+
+7- Comando clear para limparmos o terminal.
+#clear
+
+8-AS setas para cima e para baixo para navegador no histórico de comandos do terminal.
+
+9-Comando "whoami", mostra o nome do usuario.
+
+10-Comando cat com -n lista a quantidade de linhas so arquivo
+#cat -n
+
+11-Comando para trocar de diretorio direto com o home
+#cd ˜/workspace
+
+12-Comando para trocar com o raiz /.
+#cd /
+
+13-Comando para voltar 1 ou mais diretorios
+#cd ../../
+
+14-Comando para assumir apartir daquele diretorio.
+#cd ./
+
+15- Com o comando >> voce pode adicionar mais um argumento sem apagar o conteudo do texto.
+#echo "Ola alegria" >> bemvindo.txt
+# cat bemvindo.txt
+#Bem vindo
+Ola Alegria   
+
+16-Comando "mkdir" para criar um diretório ou "rmdir" para apagar o diretório especificado.
+#mkdir workspace
+ou
+#rmdir workspace
+
+17-Caracteres de busca "*" e "?". Esses caracteres de ? e * são utilizados para que sejam buscados mais de um arquivo que tenham o mesmo nome base, porém existe uma pequena diferença: O ? só encontra os arquivos que tenham apenas UM caractere diferente do nome base, enquanto o * busca quaisquer números de caracteres. 
+#cat *.txt
+ou
+#cat arquivo?.txt
+
+18-Comando "cp" utilizado para copiar diretórios e arquivos
+#cp mensagem.txt bemvindo.txt
+#cp <origem> <destino>
+
+19-Comando "mv" utilizado para renomear um arquivo ou mover de diretorio
+#mv mensagem.txt bemvindo2.txt
+#mv <origem> <destino>
+ 
+20-Comnado "zip" para compactar diretorios e o comando "unzip" para descompactar. Caracteres auxiliares "-r", recursivo e o comamdo "-q", para omitir os logs.
+#zip -rq work.zip workspace
+#zip -rq <arquivo de saida.zip> <diretorio a ser compactado>
+ou
+#unzip -rq work.zip
+
+21-Comando "tar" para compactar e descompactar diretorios. Comando para compactar e depois descompactar.
+#tar -cvzf <nome arquivo compacto.tar.gz> <arquivo a ser compactado> 
+#tar -cvzf workspace work.tar.gz
+ou
+#tar -xvzf wor.tar.gz
+
+22-Um outro formato de compactação que podemos utilizar junto com o tar é o formato .bzip2. Esse formato é mais eficiente na compactação, conseguindo criar arquivos menores. Porém o tempo que o .bzip2 leva para criar o arquivo compactado é maior do que o tempo do gzip.
+Para criar um arquivo .tar compactado com o bzip2, substituímos o -z (de gzip) por um -j. O formato que utilizamos é o .tar.bz2.
+#tar -cjf work.tar.bz2 workspace
+
+23-Comando "touch", utilizado para trocar a data e horario de criação do arquivo
+#touch arquivo1.txt
+
+24-Comando "help". O help é um comando interno do interpretador bash, que, quando executado sem parâmetros, retorna uma lista com todos os demais comandos internos do shell bash. Quando executado com parâmetro, o comando help retorna a sintaxe de utilização e uma descrição do comando interno que estamos interessados.
+#help pwd
+
+25-Quando fazemos date --help, encontramos, dentre outras coisas, ajuda sobre como formatar a nossa data. Podemos imprimir, por exemplo, a data no formato dia/mes/ano:
+#date "+%d/%m/%y"
+
+26-Comando "head" utilizado como o comando "cat", porém o comando head traz as 10 primeiras linhas do arquivo, passado junto com o parâmetro "-n4", com a quantidade de linhas.
+#head -n4 google.txt
+
+29-O comando "tail" por padrão retorna as dez últimas linhas, assim como o head, para alterar esse limite, podemos usar o -n assim como fizemos no comando anterior:
+#tail -n3 google.txt
+
+30-Além dos comandos "head" e do "tail", ainda temos o comando "less", que nos permite abrir e navegar pelo texto do arquivo no Terminal utilizando as setas para cima e para baixo do teclado:
+Fechar o arquivo com a tecla "q"
+#less google.txt
+
+===============================
+Comandos do editor VI no LINUX
+-------------------------------
+1-Utilizarndo o editor "vi" em um arquivo.
+#vi google.txt
+
+2-O texto do arquivo aparece para nós e podemos navegar por ele utilizando as setas do teclado. 
+Para sairmos do modo de navegação e entrarmos no modo de inclusão, apertamos a tecla "i", assim podemos inserir textos no arquivo exatamente no lugar onde pressionamos o "i". 
+Para voltarmos à navegação e saírmos do modo de navegação, pressionamos a tecla "ESC". 
+Para salvarmos essas alterações usamos o comando ":w" e para sair do VI, digitamos ":q".
+
+3-Vimos que para inserir textos na posição onde o cursor se encontra, pressionamos a tecla "i", mas podemos inserir textos usando também a tecla "a", neste caso inclusão de texto será feita na posição seguinte de onde estiver o cursor.
+
+4-Para excluir caracteres usamos a tecla "x", ela funciona como o delete do teclado. 
+Porém esse comando tem algo diferente: se digitarmos o número de caracteres que queremos apagar e logo depois a tecla "x", serão apagados a quantidade digitada, é como se tivéssemos apertado o "x" várias vezes, algo como 11 x, apagará 11 caracteres de texto. 
+O "x" já ajuda bastante, mas caso queiramos excluir uma linha inteira, ele pode não ajudar muito, porém, para deletarmos uma linha inteira podemos simplesmente digitar a tecla "d" duas vezes (dd), digitar uma quantidade antes do "dd" funciona da mesma forma que no comando "x".
+
+5-Tente sair do editor sem salvar o arquivo. 
+Dará erro, isso porque temos que salvar o arquivo para podermos sair. 
+Podemos juntar os comandos de salvar e sair em apenas um comando: ":wq". 
+Se quisermos sair sem salvar, precisamos usar o comando ":q!".
+
+6-Vimos bastantes comandos do VI até aqui, mas todos eles são teclas de letras em minúsculo, isso porque letras em maiúsculas possuem um comportamento diferente, o "A" (shift + a) por exemplo, também é um comando para edição de texto, mas ao contrário da "i" e "a", o "A" insere texto no final da linha atual.
+
+Resumindo os comandos que vimos do VI, até agora temos:
+
+Setas: para navegação
+i: inclui (na posição atual)
+a: adiciona (na posição posterior)
+Shift+A: adiciona (fim da linha)
+x: remove caracteres (n* x remove *n caracteres)
+dd: remove uma linha (n* dd remove *n linhas)
+
+7-Se quisermos ir para a última linha do texto por exemplo, basta apertarmos "Shift + g". 
+Se quisermos pular para a linha "n", apertamos o número correspondente e depois "Shift + g". 
+Então se, por exemplo, quisermos ir para a linha 5, fazemos 5 e depois "Shift + g", para a primeira linha a combinação também é válida: 1 e depois "Shift + g", sempre com Shift para que o g seja maiúsculo.
+
+8-Se quisermos ir para o final da linha atual usamos a tecla "$", ou seja, "Shift + 4" e para ir ao início da linha digitamos 0.
+
+9-Algo bem comum ligado à navegação de um arquivo é a procura de palavras. 
+ Se digitarmos isso, o cursor vai para a primeira ocorrência da palavra California. 
+ Se apertarmos a tecla n, ele irá para a próxima ocorrência e com "Shift + n", podemos voltar para a anterior.
+Para buscarmos palavras no texto usando o VI, digitamos "/" + o texto que procuramos, algo como:
+/california
+
+10-Um recurso muito comum de ser utilizado nas edições de texto são o copiar e colar, os quais veremos como fazer no VI. 
+Para copiarmos uma linha do texto apertamos a tecla "y" duas vezes e para colar o que foi copiado, basta usar a tecla "p".
+Também podemos usar a ideia de quantidade de linhas com os números para copiar e colar. 
+Se quisermos copiar a linha atual e mais as duas linhas abaixo podemos fazer 3 e yy - três linhas foram copiadas. O mesmo serve para o comando de colar: 3 e p cola três vezes o conteúdo copiado anteriormente.
+
+11-O comando grep também serve para pesquisarmos linhas com palavras específicas dentro de um arquivo de texto, no caso do arquivo google.txt que criamos no curso anterior, podemos pesquisar as linhas que tenham a palavra California da seguinte forma:
+#grep California google.txt
+
+12-O comando "precisamos" utilizado para listar os serviços que estão sendo executados.
+O comando "ps" lista apenas os processos que foram iniciados a partir do terminal em que estamos.
+Para obter a lista com todos os processos, passamos o parâmetro "-e" para o comando ps. 
+Para obter mais informações além das que o comando "ps" nos mostra por padrão, utilizamos o parâmetro "-f".
+#ps -ef | grep firefox
+
+13-O comando "kill", serve para matar(encerrar) processos que estão em execução.
+#kill 1675
+ou
+#killall <nome do serviço>
+#killall Firefox
+
+14-Para imprimir, no terminal, as linhas que contêm o termo "Larry Page and Sergey Brin" no nosso arquivo google.txt, que está no diretório workspace.
+#cat google.txt | grep "Larry Page e Sergey Brin"
+
+15-O comando "top" serve para listar os processos do Linux. 
+A diferença entre o "top" e o "ps" é que o top atualiza as informações de tempos em tempos.
+#top
+
+16-Para matar todos os processos criados devido às execuções do comando "top", utilizamos "killall" top.
+Podemos passar o "-9" para o "killall" para garantir que o processo será encerrado
+#killall top
+#killall -9 top
+
+17-Para mostrar apenas os processos de um determinado usuário, podemos utilizar a opção "-u":
+#top -u bistaffa
+
+18-Para acompanhar as informações de um processo específico, podemos utilizar a opção "-p" passando como argumento o PID do processo:
+#top -p 1909
+
+19-Outros comandos:
+*jobs: mostra os processos que estão sendo executados dentro do bash;
+*fg e bg: jogam os processos para foreground e background, respectivamente;
+*[programa] &: abre o [programa] diretamente em background;
+*pstree: mostra todos os processos em um gráfico de árvore.
+
+20-O comando "locate" pode nos apresentar dados desatualizados na busca, pois sua base de pesquisa é atualizada apenas de tempos em tempos.
+
+21-Para atualizar essa base de dados no momento que desejarmos, utilizamos o comando:
+#sudo updatedb
+
+22-Para saber onde os programas estão instalados usamos o comando which, seguido do nome do programa que desejamos localizar
+#which mysql 
+#which firefox
+
+23-Para mudar a senha do usuario logado, utiliza o comando "passwd". Para colocar ou trocar do usuário "root", usa "sudo passwd"
+#passwd
+#sudo passwd
+
+24-Para logar com outro usuário, utiliza o comando su <usuario>
+#su murilo
+
+25-Comando para criar um novo usuário. O comando "adduser"
+#sudo adduser carol
+
+26-Como trocar permissões dos usuários, grupo e outros usuários.
+#chmod u -rx murilo 
+#chmod g -rx murilo
+#chmod o -rx murilo
+
+27-Se executarmos o comando env conseguimos visualizar todas as variáveis de ambiente. 
+Para visualizarmos apenas o PATH podemos fazer "env | grep PATH", e na listagem, a linha que nos interessa é semelhante a apresentada na imagem a seguir:
+Perceba que nessa listagem da variável PATH encontra-se o diretório /usr/bin e que os diretórios são separados por ":". 
+Estes diretórios são onde o bash procura os programas para serem executados.
+#env | grep PATH
+
+28-Precisamos de um arquivo o qual diga que, toda vez que abrirmos um bash, o PATH seja configurado como queremos. 
+Tal arquivo já existe e tem o nome de ".bashrc". 
+#gedit .bashrc &
+
+Ao final dele vamos adicionar a seguinte linha e salvar: PATH=$PATH:/home/bistaffa/workspace
+Dessa forma, para toda sessão e todo bash, o PATH será configurado para possuir o diretório que queríamos, permanentemente.
+
+29-O comando wc pode ser utilizado para contar o número de palavras, caracteres e linhas que um arquivo possui. 
+Junto com o "wc" podemos utilizar a opção "-w" para indicar que desejamos contar apenas o número de palavras que existem no arquivo. 
+O "*.txt" indica que desejamos realizar a contagem em todos os arquivos ".txt" do nosso diretório atual.
+#wc -w *.txt
+
+30-Obtendo o número de processos.
+#ps -e | wc -l
+
+31-Uma outra variável de ambiente é a PS1. Quando estamos utilizando o terminal, algumas informações sempre são mostradas, exemplo: lucas@lucas-Inspiron-5458:~$. 
+Essa formatação é definida na variável PS1.
+#PS1="bistaffa>"
+#PS1="bistaffa:"
+
+34-Outros comandos para instalar, pesquisar, atualizar e remover programas:
+#apt-get update: busca uma lista das versões atualizadas dos programas
+#apt-cache search: procura os programas disponíveis para instalação
+#apt-get install: instala um programa dado o nome
+#apt-get remove: desinstala um programa dado o nome
+
+A opção show do comando apt-cache, mostra informações sobre um determinado pacote.
+
+35-Para realizar um teste "ftp", podemos nos conectar na nossa máquina:
+#ftp localhost
+
+36-Comando dpkg para instalar e remover programas:(Utilizado para extensões .deb). Necessário efetuar download para instalações:
+#dpkg -i [nome do pacote para instalar]
+#dpkg -r [nome do pacote para remover]
+
+#############################################
+#                                           #
+#          SCRIPT INIT E SERVICES           #
+#                                           #
+#############################################
+
+1-Vamos instalar novamente o servidor FTP, para verificarmos o funcionamento de serviços no Linux.
+#sudo apt-get install vsftpd
+
+#ps -ef | grep vsftpd
+
+2-O comando stop, para que o programa pare sua execução. 
+Usamos o comando servicepois o vsftpd é um serviço que roda toda vez que ligamos e desligamos a máquina.
+#sudo service vsftpd stop
+
+3-O comando service deve ser executado como root, caso não, teremos erros de permissão. 
+Para ele voltar a execução, mudamos apenas a ação do comando service de stop para start:
+#sudo service vsftpd start
+
+4-Por trás dos panos o que está realmente acontecendo é que um script de inicialização e desligamento (shutdown) que está localizado em /etc/init.d/vsftpd está sendo executado. 
+Ele é executável! Sendo assim, podemos executá-lo diretamente:
+#sudo /etc/init.d/vsftpd stop
+
+5-Utilize o retorno do comando ls /etc/init.d para verificar se os serviços estão nesse momento em execução.
+#ps -e | grep vsftpd
+
+6-Uma outra forma de verificar se um serviço está em execução é utilizando a opção "status":
+$ sudo service vsftpd status
+
+7-Instalando a partir do código fonte.
+Obs: Tenha certeza que seu sistema tenha alguma versão de Python instalada usando o comando python --version. 
+Caso não tenho nenhuma versão de Python, use o comando sudo apt-get update && sudo apt-get install python3.
+#python3 --version
+#sudo apt-get update && sudo apt-get install python3
+
+8-Após baixar o pacote .tar.gz, vamos acessar a pasta em que se encontra o arquivo e descompactá-lo.
+Em seguida, vamos acessar a pasta criada após a descompactação.
+$ tar zxf git-2.7.1.tar.gz
+$ ls
+git-2.7.1  git-2.7.1.tar.gz
+
+$ cd git-2.7.1/
+
+9-Primeiro vamos executar o script configure, para verificar se está faltando algo para que o git possa funcionar corretamente.
+$ ./configure
+
+10-Mas nesse momento receberemos um erro, pois precisamos instalar uma dependência antes. 
+Após instalar a dependência, podemos rodar o make.
+Neste ponto, estamos informando diretamente o nome da biblioteca ser instalada, mas lembre-se, 
+podemos buscar por seu nome através do "apt-cache search zlib" e usar o comando grep para filtragem: 
+$ apt-cache search zlib | grep dev
+$ sudo apt-get install zlib1g-dev
+$ make
+
+11-Por fim, para instalar o git, executamos um make install. 
+Para instalar, é necessário permissões de administrador:
+$ sudo make install
+
+12-Instale o pacote ssh, que instalará tanto um cliente, 
+para que consigamos nos conectar, quanto um servidor, para que possamos receber conexões.
+$ sudo apt-get install ssh
+
+13-Para realizar uma conexão ssh, basta indicar para o comando o nome do usuário e o ip da máquina que desejamos nos conectar. 
+No nosso caso, utilizaremos localhost, pois a conexão será na nossa própria máquina:
+$ ssh jose@localhost
+jose@localhost's password:
+
+14-Ao executar o comando whoami, podemos perceber que estamos logados com o usuário jose:
+$ whoami
+murilo
+
+15-Para realizar a cópia, informamos o nome do arquivo para o comando scp junto com o nome do usuário, ip e local onde copiaremos o arquivo na máquina remota:
+$ scp work.zip murilo@localhost:~/
