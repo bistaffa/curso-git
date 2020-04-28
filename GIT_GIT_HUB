@@ -268,6 +268,27 @@ Após corrigido o conflito, segue os passos:
 ******Como os conflitos são apresentados pelo Git;
 ******Como resolver os conflitos e manter apenas as alterações desejadas com o Git.
 
+=================================================================================================
+=====================           DESFAZENDO ALTERAÇÕES NO GIT          ===========================
+=================================================================================================
+Existem 3 estagios de alterações para serem revertidas.
+1-O arquivo foi modificado mas ainda nao foi adicionado com o comando git add nome_arquivo. 
+Desfazendo a alterações, com o comando git checkout -- nome_arquivo:
+#git status
+#git checkout -- index.html
 
+2-O arquivo foi modificado e foi realizado o comando git add nome_arquivo. 
+Desfazendo a alterações, com os comandos git reset HEAD e git checkout -- nome_arquivo:
+#git status
+#git add index.html
+#git reset HEAD
+#git checkout -- index.html
 
-
+3-O arquivo foi modificado e foi realizado o comando git add nome_arquivo e comitado git commit nome_arquivo
+Será necessário usar o comando git log para pegar id do commit para reverter.
+Desfazendo a alterações, com os comandos git reset id_commit:
+#git status
+#git add index.html
+#git commit index.html
+#git log
+#git revert 5e5e94bf7c28e53c6bde887b148351672804d0db
