@@ -292,3 +292,67 @@ Desfazendo a alterações, com os comandos git reset id_commit:
 #git commit index.html
 #git log
 #git revert 5e5e94bf7c28e53c6bde887b148351672804d0db
+
+=================================================================================================
+=====================              GUARDANDO PARA DEPOIS              ===========================
+=================================================================================================
+No Git, existe um conceito denominado Stash, e por meio de git stash conseguimos salvar todas as alterações, 
+    no caso, somente o arquivo index.html, para um local temporário, 
+    sem necessidade de um commit ou de se gerar um commit para isto.
+#git stash 
+
+Após executarmos o comando "git stash", com o comando "git stash list", podemos visualizar uma lista de tudo que foi salvo nessas condições.
+#git stash list
+
+Iremos alterar o arquivo index.html só que em outro ponto, e agora iremos realizar o commit.
+#git add index.html
+#git commit -m "Alterado o nome do curso de kotlin""
+
+Feito isto, queremos voltar a trabalhar com as alterações no curso de Ansible. 
+No VS Code, teremos que as alterações em relação ao título do Kubernetes já foram realizados, porém os de Ansible, não. 
+Queremos trazer os dados armazenados pelo git stash ao diretório de trabalho. 
+Há duas opções: executarmos git stash list, e em seguida passarmos o número da stash em git stash apply <numero_da_stash>, aplicaremos estas modificações, porém elas continuarão na stash. 
+Para a remoção, poderemos usar git stash drop.
+#git stash list
+#git stash apply 0
+#git stash drop
+
+Podemos usar o comando git stash pop, no caso esse comando já aplicará e removerá da stash.
+#git stash pop
+#git add index.html
+#git commit -m "Alterado o nomeod do curso de Kubernetes"
+#git push local master
+
+O comando git stash é muito util quando precisamos para certa codificação para atuar em outra.
+
+=================================================================================================
+=====================                VIAJANDO NO TEMPO                ===========================
+=================================================================================================
+O comando git log --oneline, por exemplo, nos traz os hashs com apenas os sete primeiros caracteres, o suficiente para identificá-los de forma única.
+No caso, queremos navegar ao commit de hash ea539b3. 
+Já conversamos que o comando git checkout muda o estado da aplicação, seja desfazendo alterações, navegando entre branches ou commits. 
+Assim, é possível utilizarmos git checkout ea539b3, e com isso a mensagem que se exibe indica que estamos em um estado de cabeça (HEAD) desanexado (detached) do controle de versões.
+#git log --oneline
+#git checkout ea539b3
+
+Se realizarmos qualquer alteração, incluindo outro git commit, o HEAD se locomoverá para um lugar sem nome, uma branch inexistente. 
+E se fizermos git checkout master nunca mais conseguiremos acessar o commit em que estávamos anteriormente, que fica desanexado das linhas de desenvolvimento.
+#git commit -m "Realizei alteração que vai ser perder"
+
+Se quisermos fazer alterações que sejam salvas a partir daqui, será necessário criar uma branch antes, a ser modificado a partir deste commit. Usaremos git checkout -b novo-branch, 
+    de forma a não estarmos mais desassociados da linha de desenvolvimento, o que se confirma se realizarmos um novo commit.
+
+O que foi visto:
+******Que o Git pode nos ajudar a desfazer alterações que não vamos utilizar;
+******Que, para desfazer uma alteração antes de adicioná-la para commit (com git add), podemos utilizar o comando git checkout -- <arquivos>;
+******Que, para desfazer uma alteração após adicioná-la para commit, antes precisamos executar o git reset HEAD <arquivos> e depois podemos desfazê-las com git checkout -- <arquivos>;
+******Que, para revertermos as alterações realizadas em um commit, o comando git revert pode ser a solução;
+******Que o comando git revert gera um novo commit informando que alterações foram desfeitas;
+******Que, para guardar um trabalho para retomá-lo posteriormente, podemos utilizar o git stash;
+******Que, para visualizar quais alterações estão na stash, podemos utilizar o comando git stash list;
+******Que, com o comando git stash apply <numero>, podemos aplicar uma alteração específica da stash;
+******Que o comando git stash drop <numero> remove determinado item da stash;
+******Que o comando git stash pop aplica e remove a última alteração que foi adicionada na stash;
+******Que o git checkout serve para deixar a cópia do código da nossa aplicação no estado que desejarmos:
+            git checkout <branch> deixa o código no estado de uma branch com o nome <branch>;
+            git checkout <hash> deixa o código no estado do commit com o hash <hash>.
